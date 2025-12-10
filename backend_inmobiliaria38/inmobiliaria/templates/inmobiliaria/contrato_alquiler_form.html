@@ -1,0 +1,21 @@
+{% extends "inmobiliaria/base.html" %}
+
+{% block title %}{% if form.instance.pk %}Editar{% else %}Nuevo{% endif %} Contrato de Alquiler{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">{% if form.instance.pk %}Editar{% else %}Nuevo{% endif %} Contrato de Alquiler</h1>
+    <div class="card">
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="d-flex justify-content-end">
+                    <a href="{% url 'inmobiliaria:contrato_alquiler_list' %}" class="btn btn-secondary me-2">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

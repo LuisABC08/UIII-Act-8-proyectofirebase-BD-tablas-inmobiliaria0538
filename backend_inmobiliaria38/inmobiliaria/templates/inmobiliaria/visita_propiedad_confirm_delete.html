@@ -1,0 +1,11 @@
+{% extends "inmobiliaria/base.html" %}
+
+{% block content %}
+    <h1>Confirmar Eliminación</h1>
+    <p>¿Estás seguro de que deseas eliminar la visita a la propiedad "{{ object.propiedad }}" con el cliente "{{ object.cliente }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+        <a href="{% url 'inmobiliaria:visita_propiedad_list' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+{% endblock %}

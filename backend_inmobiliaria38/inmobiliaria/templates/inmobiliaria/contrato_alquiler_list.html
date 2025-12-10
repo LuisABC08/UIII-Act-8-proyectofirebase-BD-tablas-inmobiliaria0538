@@ -1,0 +1,47 @@
+{% extends "inmobiliaria/base.html" %}
+
+{% block title %}Contratos de Alquiler{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Contratos de Alquiler</h1>
+    <a href="{% url 'inmobiliaria:contrato_alquiler_create' %}" class="btn btn-primary mb-3">Nuevo Contrato de Alquiler</a>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Propiedad</th>
+                    <th>Propietario</th>
+                    <th>Cliente</th>
+                    <th>Agente</th>
+                    <th>Fecha de Inicio</th>
+                    <th>Fecha de Fin</th>
+                    <th>Monto Mensual</th>
+                    <th>Estado</th>
+                    <th>Deposito</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contrato in contratos %}
+                <tr>
+                    <td>{{ contrato.propiedad }}</td>
+                    <td>{{ contrato.propietario }}</td>
+                    <td>{{ contrato.cliente }}</td>
+                    <td>{{ contrato.agente }}</td>
+                    <td>{{ contrato.fecha_inicio|date:"d/m/Y" }}</td>
+                    <td>{{ contrato.fecha_fin|date:"d/m/Y" }}</td>
+                    <td>${{ contrato.monto_alquiler_mensual }}</td>
+                    <td>{{ contrato.estado_contrato }}</td>S
+                    <td>${{ contrato.deposito_garantia }}</td>
+                    <td>
+                        <a href="{% url 'inmobiliaria:contrato_alquiler_update' contrato.id %}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{% url 'inmobiliaria:contrato_alquiler_delete' contrato.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

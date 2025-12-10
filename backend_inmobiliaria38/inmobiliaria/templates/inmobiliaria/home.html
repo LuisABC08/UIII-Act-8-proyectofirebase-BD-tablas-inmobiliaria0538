@@ -1,0 +1,13 @@
+{% extends 'inmobiliaria/base.html' %}
+
+{% block content %}
+    <div class="container text-center mt-4">
+        <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="img-fluid rounded shadow-lg" alt="Casa moderna en venta">
+    </div>
+
+    <div class="text-center mt-5">
+        <h1 class="display-4 fw-bold">Bienvenido a InmoApp</h1>
+        <p class="fs-5 text-muted">La solución integral para la gestión de tu negocio inmobiliario.</p>
+        <a class="btn btn-primary btn-lg mt-3" href="{% url 'inmobiliaria:propiedad_list' %}" role="button">Explorar Propiedades</a>
+    </div>
+{% endblock %}

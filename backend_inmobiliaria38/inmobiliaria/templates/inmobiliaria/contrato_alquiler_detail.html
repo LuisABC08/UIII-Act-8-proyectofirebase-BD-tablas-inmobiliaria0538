@@ -1,0 +1,27 @@
+{% extends "inmobiliaria/base.html" %}
+
+{% block title %}Detalles del Contrato de Alquiler{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Detalles del Contrato de Alquiler</h1>
+    <div class="card">
+        <div class="card-header">
+            <h2>Contrato para la Propiedad: {{ contrato.propiedad }}</h2>
+        </div>
+        <div class="card-body">
+            <p><strong>Cliente:</strong> {{ contrato.cliente }}</p>
+            <p><strong>Agente Inmobiliario:</strong> {{ contrato.agente }}</p>
+            <p><strong>Fecha de Inicio:</strong> {{ contrato.fecha_inicio }}</p>
+            <p><strong>Fecha de Fin:</strong> {{ contrato.fecha_fin }}</p>
+            <p><strong>Monto Mensual:</strong> ${{ contrato.monto_alquiler_mensual }}</p>
+            <p><strong>Estado del Contrato:</strong> {{ contrato.estado_contrato }}</p>
+            <p><strong>Depósito de Garantía:</strong> ${{ contrato.deposito_garantia }}</p>
+        </div>
+        <div class="card-footer text-end">
+            <a href="{% url 'inmobiliaria:contrato_alquiler_list' %}" class="btn btn-secondary">Volver a la Lista</a>
+            <a href="{% url 'inmobiliaria:contrato_alquiler_update' contrato.id %}" class="btn btn-warning">Editar</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

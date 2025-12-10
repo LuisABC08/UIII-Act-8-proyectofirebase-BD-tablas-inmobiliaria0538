@@ -1,0 +1,33 @@
+{% extends "inmobiliaria/base.html" %}
+
+{% block title %}
+{% if form.instance.pk %}
+Editar Contrato de Venta
+{% else %}
+Nuevo Contrato de Venta
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">
+        {% if form.instance.pk %}
+        Editar Contrato de Venta
+        {% else %}
+        Nuevo Contrato de Venta
+        {% endif %}
+    </h1>
+    <div class="card">
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.as_p }}
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a href="{% url 'inmobiliaria:contrato_venta_list' %}" class="btn btn-secondary">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

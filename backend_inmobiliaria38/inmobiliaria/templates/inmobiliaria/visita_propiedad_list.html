@@ -1,0 +1,49 @@
+{% extends 'inmobiliaria/base.html' %}
+
+{% block content %}
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Lista de Visitas</h1>
+        <a href="{% url 'inmobiliaria:visita_propiedad_create' %}" class="btn btn-primary">Nueva Visita</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Propiedad</th>
+                    <th>Cliente</th>
+                    <th>Agente</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Comentarios</th>
+                    <th>Calificación</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for visita in visitas %}
+                    <tr>
+                        <td>{{ visita.id }}</td>
+                        <td>{{ visita.propiedad }}</td>
+                        <td>{{ visita.cliente }}</td>
+                        <td>{{ visita.agente }}</td>
+                        <td>{{ visita.fecha_visita|date:"d/m/Y" }}</td>
+                        <td>{{ visita.hora_visita|time:"H:i" }}</td>
+                        <td>{{ visita.comentarios_cliente|default:"-"|truncatechars:30 }}</td>
+                        <td>{{ visita.calificacion_propiedad|default:"-" }}</td>
+                        <td>
+                            <a href="{% url 'inmobiliaria:visita_propiedad_detail' visita.pk %}" class="btn btn-sm btn-secondary">Ver</a>
+                            <a href="{% url 'inmobiliaria:visita_propiedad_update' visita.pk %}" class="btn btn-sm btn-info">Editar</a>
+                            <a href="{% url 'inmobiliaria:visita_propiedad_delete' visita.pk %}" class="btn btn-sm btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="9" class="text-center">No hay visitas registradas.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

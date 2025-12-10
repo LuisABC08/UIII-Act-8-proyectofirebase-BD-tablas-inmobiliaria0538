@@ -1,0 +1,26 @@
+{% extends 'inmobiliaria/base.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Detalles de la Visita</h1>
+        <div class="card">
+            <div class="card-header">
+                <h2>Visita a {{ visita.propiedad }}</h2>
+            </div>
+            <div class="card-body">
+                <p><strong>Propiedad:</strong> {{ visita.propiedad }}</p>
+                <p><strong>Cliente:</strong> {{ visita.cliente }}</p>
+                <p><strong>Agente:</strong> {{ visita.agente }}</p>
+                <p><strong>Fecha:</strong> {{ visita.fecha_visita|date:"d/m/Y" }}</p>
+                <p><strong>Hora:</strong> {{ visita.hora_visita|time:"H:i" }}</p>
+                <p><strong>Comentarios:</strong> {{ visita.comentarios_cliente|default:"-" }}</p>
+                <p><strong>Calificación:</strong> {{ visita.calificacion_propiedad|default:"-" }}</p>
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'inmobiliaria:visita_propiedad_list' %}" class="btn btn-secondary">Volver a la lista</a>
+                <a href="{% url 'inmobiliaria:visita_propiedad_update' visita.pk %}" class="btn btn-info">Editar</a>
+                <a href="{% url 'inmobiliaria:visita_propiedad_delete' visita.pk %}" class="btn btn-danger">Eliminar</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'inmobiliaria/base.html' %}
+
+{% block content %}
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Lista de Propiedades</h1>
+        <a href="{% url 'inmobiliaria:propiedad_create' %}" class="btn btn-primary">Nueva Propiedad</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Propietario</th>
+                    <th>Dirección</th>
+                    <th>Tipo</th>
+                    <th>Hab.</th>
+                    <th>Baños</th>
+                    <th>Sup. (m²)</th>
+                    <th>P. Venta</th>
+                    <th>P. Alquiler</th>
+                    <th>Estado</th>
+                    <th>Publicación</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for propiedad in propiedades %}
+                    <tr>
+                        <td>{{ propiedad.id }}</td>
+                        <td>{{ propiedad.propietario }}</td>
+                        <td>{{ propiedad.direccion }}</td>
+                        <td>{{ propiedad.tipo_propiedad }}</td>
+                        <td>{{ propiedad.num_habitaciones }}</td>
+                        <td>{{ propiedad.num_banos }}</td>
+                        <td>{{ propiedad.superficie_m2 }}</td>
+                        <td>${{ propiedad.precio_venta|default:"-" }}</td>
+                        <td>${{ propiedad.precio_alquiler|default:"-" }}</td>
+                        <td>{{ propiedad.estado_propiedad }}</td>
+                        <td>{{ propiedad.fecha_publicacion|date:"d/m/Y" }}</td>
+                        <td>{{ propiedad.descripcion|truncatechars:30 }}</td>
+                        <td>
+                            <a href="{% url 'inmobiliaria:propiedad_update' propiedad.pk %}" class="btn btn-sm btn-info">Editar</a>
+                            <a href="{% url 'inmobiliaria:propiedad_delete' propiedad.pk %}" class="btn btn-sm btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="12" class="text-center">No hay propiedades registradas.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "inmobiliaria/base.html" %}
+
+{% block title %}Confirmar Eliminación{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Confirmar Eliminación</h1>
+    <div class="alert alert-danger" role="alert">
+        <p>¿Estás seguro de que quieres eliminar el contrato de venta para la propiedad <strong>{{ object.propiedad }}</strong>?</p>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a href="{% url 'inmobiliaria:contrato_venta_list' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
